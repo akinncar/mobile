@@ -143,7 +143,11 @@ export class ExposureNotificationService {
     await this.secureStorage.setItem(SUBMISSION_AUTH_KEYS, serialized, SECURE_OPTIONS);
     const submissionCycleStartAt = new Date();
     this.storage.setItem(SUBMISSION_CYCLE_STARTED_AT, submissionCycleStartAt.getTime().toString());
-    this.exposureStatus.set({type: 'diagnosed', needsSubmission: true, cycleEndsAt: submissionCycleStartAt});
+    this.exposureStatus.set({
+      type: 'diagnosed',
+      needsSubmission: true,
+      cycleEndsAt: addDays(submissionCycleStartAt, 14),
+    });
   }
 
   async fetchAndSubmitKeys(): Promise<void> {
