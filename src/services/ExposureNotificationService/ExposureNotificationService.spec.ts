@@ -101,8 +101,7 @@ describe('ExposureNotificationService', () => {
   });
 
   it('enters Diagnosed flow when start keys submission process', async () => {
-    dateSpy.mockImplementation((args: any) => {
-      if (args !== undefined) return OriginalDate(args);
+    dateSpy.mockImplementation(() => {
       return new OriginalDate();
     });
     when(server.claimOneTimeCode)
